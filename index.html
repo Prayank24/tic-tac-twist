@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tic‑Tac‑Twist</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Tic‑Tac‑Twist</h1>
+    <label for="modeSelect">
+        Mode:
+        <select id="modeSelect">
+          <option value="pvp" selected>2 Players</option>
+          <option value="ai">Vs Computer</option>
+        </select>
+      </label>
+      
+    <!-- Wrap board + rules side‑by‑side -->
+    <div id="gameArea">
+      <!-- The 3×3 board -->
+      <div id="board">
+        <!-- nine cells -->
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+  
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+  
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+  
+        <!-- red strike‑through bar (hidden until win) -->
+        <div id="strike"></div>
+      </div>
+  
+      <!-- 📜 Rules sidebar -->
+      <aside id="rules">
+        <h2>Rules</h2>
+        <ol>
+          <li>Classic 3 × 3 Tic‑Tac‑Toe board.</li>
+          <li>Max three <strong>X</strong> and three <strong>O</strong> on the board at any time.</li>
+          <li>When a player places their 4<sup>th</sup> mark, their oldest mark disappears (FIFO).</li>
+          <li>First to make a straight line of three wins.</li>
+          <li>Undo ↩︎ removes the last full move (including any auto‑removal).</li>
+        </ol>
+      </aside>
+    </div>
+  
+    <p id="message">X’s turn</p>
+    <button id="undoBtn" disabled>Undo</button>
+  
+    <!-- Confetti library (tiny, no install) -->
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+  
+    <script src="game.js"></script>
+  </body>
+  
+</html>
