@@ -84,4 +84,80 @@ body {
   
   /* Per‑cell strike‑through (backup for accessibility) */
   .win-cell { text-decoration: line-through solid crimson 4px; }
-   
+   /* ───── THEME VARIABLES ───── */
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+    --cell-border: #333;
+    --x-color: #000000;
+    --o-color: #000000;
+  }
+  
+  body.dark {
+    --bg: #0e0e0e;
+    --text: #e4e4e4;
+    --cell-border: #666;
+    --x-color: #ff2eea;   /* neon pink */
+    --o-color: #00eaff;   /* neon cyan */
+  }
+  
+  body {
+    background: var(--bg);
+    color: var(--text);
+  }
+  
+  /* Apply colors */
+  .cell {
+    border: 2px solid var(--cell-border);
+    color: var(--text);          /* fallback */
+  }
+  body.dark .cell.filled {
+    text-shadow: 0 0 6px currentColor;
+  }
+  body.dark .cell[data-player="X"] { color: var(--x-color); }
+  body.dark .cell[data-player="O"] { color: var(--o-color); }
+  
+  /* Strike bar adapts */
+  #strike { background: var(--o-color); }
+  
+  /* ───── Toggle switch styling ───── */
+  .switch {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .9rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .switch input { display: none; }
+  
+  .switch .slider {
+    width: 36px;
+    height: 18px;
+    background: #bbb;
+    border-radius: 10px;
+    position: relative;
+    transition: background .2s;
+  }
+  
+  .switch .slider::before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform .2s;
+  }
+  
+  .switch input:checked + .slider {
+    background: #4ade80;           /* green */
+  }
+  
+  .switch input:checked + .slider::before {
+    transform: translateX(18px);
+  }
+  

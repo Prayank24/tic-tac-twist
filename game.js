@@ -27,6 +27,19 @@
     const modeSelect = document.getElementById('modeSelect');   // <select> we added
     const jsConfetti = new JSConfetti();
   
+    const themeToggle = document.getElementById('themeToggle');
+
+/* ---- THEME INITIALISATION ---- */
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
+  themeToggle.checked = true;
+}
+
+themeToggle.addEventListener('change', () => {
+  document.body.classList.toggle('dark', themeToggle.checked);
+  localStorage.setItem('theme', themeToggle.checked ? 'dark' : 'light');
+});
+
     /* ---------- 3. EVENT LISTENERS ---------- */
     cells.forEach(c => c.addEventListener('click', handleClick));
     undoBtn.addEventListener('click', handleUndo);
@@ -124,12 +137,14 @@
   
     /* ---------- 8. RENDER BOARD ---------- */
     function renderBoard() {
-      board.forEach((val, i) => {
-        const cell = cells[i];
-        cell.textContent = val || '';
-        cell.classList.toggle('filled', !!val);
-      });
-    }
+        board.forEach((val, i) => {
+          const cell = cells[i];
+          cell.textContent = val || '';
+          cell.dataset.player = val || '';           // ← NEW
+          cell.classList.toggle('filled', !!val);
+        });
+      }
+      
   
     /* ---------- 9. WIN‑CHECK ---------- */
     function getWinInfo() {
